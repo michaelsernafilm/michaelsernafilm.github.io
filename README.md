@@ -1,10 +1,9 @@
-## Welcome to GitHub Pages
+# MIKE SERNA 
+## Director | Producer | Editor
 
-You can use the [editor on GitHub](https://github.com/michaelsernafilm/michaelsernafilm.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+I'm a Writer, Storyteller and Director. I create everything from short films to documentaries. I've experienced the start-up life, worked in the broadcast and television field and continuing my passion in filmmaking.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
+### Portfolio
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
