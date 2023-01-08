@@ -13,7 +13,7 @@ body {
 }
 ::selection { 
 	background: $black;
-	color: $white;
+	color: $$black;
 }
 a {
 	transition: .3s all ease;
