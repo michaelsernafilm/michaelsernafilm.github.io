@@ -95,10 +95,10 @@ a {
 .site-section-heading {
   color: #000;
   position: relative;
-  font-size: 2.5rem; }
+  font-size: 2rem; }
   @media (min-width: 768px) {
     .site-section-heading {
-      font-size: 4rem; } }
+      font-size: 2rem; } }
   .site-section-heading:after {
     content: "";
     left: 0%;
