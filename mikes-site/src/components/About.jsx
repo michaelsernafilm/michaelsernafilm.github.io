@@ -5,8 +5,9 @@ import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 import IconButton from '@material-ui/core/IconButton';
 
 import '../index.css';
-import '../bootstrap/bootstrap.css'
+import '../css/bootstrap.css'
 import AboutImage from '../resources/about.jpg';
+import { Timeline } from './Timeline';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,8 +82,13 @@ const About = () => {
                         </div>
                     </div>
                 </Grow>
+
                 <Grow in={bannerGrow} timeout={timeout}>
-                    <h1>Send me an email</h1>
+                    <Timeline></Timeline>
+                </Grow>
+                <br /><br /><br /><br /><br /><br />
+                <Grow in={bannerGrow} timeout={timeout}>
+                    <h1 class="site-section-heading text-center">Send me an email</h1>
                 </Grow>
                 <Grow in={bannerGrow} timeout={timeout}>
                     <IconButton color="inherit" href={`mailto:${email}`}>
