@@ -1,29 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { Grid, Tooltip, Paper } from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YoutubeIcon from '@material-ui/icons/YouTube';
-import DescriptionIcon from '@material-ui/icons/Description';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import TheatersIcon from '@mui/icons-material/Theaters';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -31,12 +26,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import CameraIcon from '@mui/icons-material/Camera';
 import DirectorIcon from '@mui/icons-material/Campaign';
 import EditorIcon from '@mui/icons-material/CameraRoll';
-import EditorIcon2 from '@mui/icons-material/Edit';
 import AboutMeIcon from '@mui/icons-material/Person';
 
 const pages = ['Director', 'Cinematography', 'Editor', 'About'];
@@ -127,6 +119,7 @@ HideOnScroll.propTypes = {
 
 const NavBar = (props) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -162,7 +155,7 @@ const NavBar = (props) => {
       default:
       break;
     }
-  }
+  };
 
   const renderPageIcons = (page) => {
     switch (page) {
@@ -177,6 +170,32 @@ const NavBar = (props) => {
       default:
       break;
     }
+  };
+
+  const redirectToPage = (page) => {
+    switch (page) {
+      case 'Director':
+        return () => navigate('director');
+      case 'Cinematography':
+        return () => navigate('cinematography');
+      case 'Editor':
+        return () => navigate('editor');
+      case 'About':
+        return () => navigate('about');
+      default:
+      break;
+    }
+  }
+
+  const redirectToSocial = (social) => {
+    switch (social) {
+      case "Youtube":
+        return () => window.open("https://www.youtube.com/@MikeSerna7");
+      case "Instagram":
+        return () => window.open('https://www.instagram.com/mike_serna_film');
+      case "Twitter":
+        return () => window.open('https://twitter.com/themikeyserna');
+    }
   }
 
   const list = (anchor) => (
@@ -189,7 +208,7 @@ const NavBar = (props) => {
       <List>
         {pages.map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={redirectToPage(text)}>
               <ListItemIcon>
                 {renderPageIcons(text)}
               </ListItemIcon>
@@ -202,7 +221,7 @@ const NavBar = (props) => {
       <List>
         {socials.map((social, index) => (
           <ListItem key={social} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={redirectToSocial(social)}>
               <ListItemIcon>
                 {renderSocialIcons(social)}
               </ListItemIcon>
@@ -233,7 +252,7 @@ const NavBar = (props) => {
               <AppBar style={sectionStyle}>
               <Toolbar className={classes.customizeToolbar}>
                   <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: '1' }, mr: 1 }} />
+                    <TheatersIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }} />
                     <Typography
                       variant="h5"
                       noWrap
@@ -267,11 +286,11 @@ const NavBar = (props) => {
                     </React.Fragment>
                   </Box>
                   
-                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                  <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                     {pages.map((page) => (
                       <Button
                         key={page}
-                        onClick={toggleDrawer('right', true)}
+                        onClick={redirectToPage(page)}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                       >
                         {page}
