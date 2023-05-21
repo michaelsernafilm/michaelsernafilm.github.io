@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { Grid, Tooltip, Paper } from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
@@ -15,8 +14,33 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YoutubeIcon from '@material-ui/icons/YouTube';
-import EmailIcon from '@material-ui/icons/Email';
 import DescriptionIcon from '@material-ui/icons/Description';
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Drawer from '@mui/material/Drawer';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import CameraIcon from '@mui/icons-material/Camera';
+import DirectorIcon from '@mui/icons-material/Campaign';
+import EditorIcon from '@mui/icons-material/CameraRoll';
+import EditorIcon2 from '@mui/icons-material/Edit';
+import AboutMeIcon from '@mui/icons-material/Person';
+
+const pages = ['Director', 'Cinematography', 'Editor', 'About'];
+const socials = ['Youtube', 'Instagram', 'Twitter'];
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -102,31 +126,160 @@ HideOnScroll.propTypes = {
 };
 
 const NavBar = (props) => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-    const onResumeClick = () => {
-      window.open();
-    };
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-    var sectionStyle = {
-      backgroundRepeat: 'no-repeat',
-      backgroundColor: '#000000',
-      backgroundSize: 'contain',
-      minHeight: 50
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
     }
 
-    return (
-        <div className={classes.root}>
-            <React.Fragment>
-            <CssBaseline />
-            <HideOnScroll {...props}>
-                <AppBar style={sectionStyle}>
-                <Toolbar className={classes.customizeToolbar}>
-                    <div>
-                      <Grid>
-                          <p>Mike Serna</p>
-                      </Grid>
-                    </div>
+    setState({ ...state, [anchor]: open });
+  };
+
+  const renderSocialIcons = (social) => {
+    switch (social) {
+      case 'Youtube':
+        return <YoutubeIcon />
+      case 'Instagram':
+        return <InstagramIcon />
+      case 'Twitter':
+        return <TwitterIcon />
+      default:
+      break;
+    }
+  }
+
+  const renderPageIcons = (page) => {
+    switch (page) {
+      case 'Director':
+        return <DirectorIcon />
+      case 'Cinematography':
+        return <CameraIcon />
+      case 'Editor':
+        return <EditorIcon />
+      case 'About':
+        return <AboutMeIcon />
+      default:
+      break;
+    }
+  }
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {pages.map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {renderPageIcons(text)}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {socials.map((social, index) => (
+          <ListItem key={social} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {renderSocialIcons(social)}
+              </ListItemIcon>
+              <ListItemText primary={social} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  const onResumeClick = () => {
+    window.open();
+  };
+
+  var sectionStyle = {
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#000000',
+    backgroundSize: 'contain',
+    minHeight: 50
+  }
+
+  return (
+      <div className={classes.root}>
+          <React.Fragment>
+          <CssBaseline />
+          <HideOnScroll {...props}>
+              <AppBar style={sectionStyle}>
+              <Toolbar className={classes.customizeToolbar}>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
+                    <AdbIcon sx={{ display: { xs: 'flex', md: '1' }, mr: 1 }} />
+                    <Typography
+                      variant="h5"
+                      noWrap
+                      component="a"
+                      href=""
+                      sx={{
+                        mr: 2,
+                        display: { xs: 'flex', md: '1' },
+                        flexGrow: 1,
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Mike Serna
+                    </Typography>
+                  </Box>
+
+                  <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+                    <React.Fragment key={'right'}>
+                      <Button style={{color: 'white'}} onClick={toggleDrawer('right', true)}>{<MenuIcon />}</Button>
+                      <Drawer
+                        anchor={'right'}
+                        open={state['right']}
+                        onClose={toggleDrawer('right', false)}
+                      >
+                        {list('right')}
+                      </Drawer>
+                    </React.Fragment>
+                  </Box>
+                  
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {pages.map((page) => (
+                      <Button
+                        key={page}
+                        onClick={toggleDrawer('right', true)}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                  </Box>
+                  
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     <div className={classes.linksSection}>
                       <Tooltip title="Youtube Channel - @MikeSerna7" arrow>
                         <IconButton color="inherit" onClick={() => window.open("https://www.youtube.com/@MikeSerna7")}>
@@ -144,13 +297,15 @@ const NavBar = (props) => {
                         </IconButton>
                       </Tooltip>
                     </div>
-                </Toolbar>
-                </AppBar>
-            </HideOnScroll>
-            <Toolbar />
-            </React.Fragment>
-        </div>
-    );
+                  </Box>
+
+              </Toolbar>
+              </AppBar>
+          </HideOnScroll>
+          <Toolbar />
+          </React.Fragment>
+      </div>
+  );
 }
 
 export { NavBar };
