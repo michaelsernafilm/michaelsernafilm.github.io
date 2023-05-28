@@ -7,8 +7,9 @@ import {
 
 import './App.css';
 import { NavBar } from './components/navbar';
-import { Home } from "./home";
 import { Director } from "./components/Director";
+import { Cinematography } from "./components/Cinematography";
+import { Editor } from "./components/Editor";
 import { About } from './components/About';
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
       <BrowserRouter>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Director />} />
           <Route path="/director" element={<Director />} />
+          <Route path="/cinematography" element={<Cinematography />} />
+          <Route path="/editor" element={<Editor />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>

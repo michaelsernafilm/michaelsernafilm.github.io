@@ -25,7 +25,7 @@ const directorTitles = [
     "Paddler Classic",
     "Fortify",
     "Bearaby Studio Shoot",
-    "How to whiten sensitive teeth",
+    "Whiten Sensitive Teeth",
     "Howard House",
     "Central Park",
     "Kalispel Casino",
