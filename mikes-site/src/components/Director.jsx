@@ -10,7 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import "../css/video-react.css";
 import '../../node_modules/react-modal-video/scss/modal-video.scss';
-import ModalVideo from 'react-modal-video'
+import ModalVideo from 'react-modal-video';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -20,16 +20,16 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 const nDirTiles = 9;
 const directorTitles = [
-    "How To Wash A Weighted Blanket",
-    "Henry Rose",
-    "Paddler Classic",
+    "DisplayIt - Make It Pop",
+    "High Impact - The Artisan",
+    "Rallye Mercedes EV Lineup",
+    "Rallye Lexus Multicultural",
+    "Bearaby x Celsious",
     "Fortify",
-    "Bearaby Studio Shoot",
-    "Whiten Sensitive Teeth",
-    "Howard House",
     "Central Park",
     "Kalispel Casino",
     "GUS Short Film",
+    "Henry Rose",
 ]
 
 const useStyles = makeStyles((theme) => 
@@ -65,7 +65,7 @@ const Director = () => {
     for(let i = 1; i <= nDirTiles; ++i) {
         var tile = {
             img: require(`../resources/dir_img_${i}.jpg`),
-            title: directorTitles[i],
+            title: directorTitles[i-1],
             author: 'Mike Serna'
         };
 
@@ -86,7 +86,7 @@ const Director = () => {
             </GridListTile >
                 {directorTiles.map((tile, index) => (
                     <GridListTile >
-                        <Card sx={{ maxWidth: 400, maxHeight: 400 }}>
+                        <Card sx={{ maxWidth: 400, maxHeight: 400 }} style={{ backgroundColor: "black", color: "white", fontFamily: "initial" }} >
                             <CardActionArea>
                                 <PlayCircleIcon 
                                     className="icon-wrap"
