@@ -2,11 +2,7 @@ import {React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import InfoIcon from '@material-ui/icons/Info';
 
 import "../css/video-react.css";
 import '../../node_modules/react-modal-video/scss/modal-video.scss';
@@ -79,9 +75,6 @@ const Director = () => {
         <GridList cols={3} cellHeight={'auto'} className={classes.gridList} spacing={12}>
             <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
             <div class="site-section">
-                <h1 className={classes.header}>
-                    <h2 class="site-section-heading text-center">Director</h2>
-                </h1>
             </div>
             </GridListTile >
                 {directorTiles.map((tile, index) => (

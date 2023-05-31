@@ -44,9 +44,6 @@ const About = () => {
             <div className='container'>
                 <Grow in={bannerGrow} timeout={timeout}>
                     <div class="site-section">
-                        <h1 className={classes.header}>
-                        <h2 class="site-section-heading text-center">About Me</h2>
-                        </h1>
                     </div>
                 </Grow>
                 <Grow in={bannerGrow} timeout={timeout}>
@@ -54,8 +51,8 @@ const About = () => {
                         <div class="col-md-7">
                             <img src={AboutImage} alt="About Image" class="img-fluid"/>
                         </div>
-                        <div class="col-md-4 ml-auto mr-auto">
-                            <h3 class="text-black">My Mission</h3>
+                        <div class="col-md-4 ml-auto mr-auto" style={{color: "white", padding: "0.5em"}}>
+                            <h3 class="text-black"></h3>
                             <p>Mike Serna is a talented and experienced professional in 
                                 the fields of video, motion design, and photography. 
                                 <br />
@@ -91,8 +88,8 @@ const About = () => {
                     <h1 class="site-section-heading text-center">Send me an email</h1>
                 </Grow>
                 <Grow in={bannerGrow} timeout={timeout}>
-                    <IconButton color="inherit" href={`mailto:${email}`}>
-                        <MarkunreadMailboxIcon />
+                    <IconButton color="white" href={`mailto:${email}`}>
+                        <MarkunreadMailboxIcon style={{color: "white"}} />
                     </IconButton>
                 </Grow>
             </div>
