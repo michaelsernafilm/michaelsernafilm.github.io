@@ -96,7 +96,8 @@ const Director = () => {
                                     setOpen(true);
                                 }}
                                 component="img"
-                                height="140"
+                                height="300"
+                                width="300"
                                 image={require(`../resources/dir_img_${index}.jpg`)}
                                 alt="n/a"
                                 />
