@@ -15,23 +15,21 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
 const nTiles = 5;
-const nMoTiles = 7;
+const nMoTiles = 5;
 const editTitles = [
-    "Edit 1",
-    "Edit 2",
-    "Edit 3",
-    "Edit 4",
-    "Edit 5",
+    "BMW 7 Series",
+    "BMW X5",
+    "Susan Ciminelli",
+    "Why H&M is Recycling Clothes?",
+    "Quest Sunday Fest",
 ]
 
 const motTitles = [
-    "Motion 1",
-    "Motion 2",
-    "Motion 3",
-    "Motion 4",
-    "Motion 5",
-    "Motion 6",
-    "Motion 7"
+    "Bearaby Nappling Promo",
+    "Ferrari Canvas",
+    "NorthenQuest Halloween",
+    "NorthernQuest Present: Outdoor Summer Concerts",
+    "NorthernQuest RV Resort",
 ]
 
 const useStyles = makeStyles((theme) => 

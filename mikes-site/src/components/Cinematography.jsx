@@ -16,17 +16,17 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 const nDirTiles = 11;
 const cineTiles = [
-    "Cine 1",
-    "Cine 2",
-    "Cine 3",
-    "Cine 4",
-    "Cine 5",
-    "Cine 6",
-    "Cine 7",
-    "Cine 8",
-    "Cine 9",
-    "Cine 10",
-    "Cine 11",
+    "Ford Puente Hills Brand Video",
+    "Bearaby Studio Shoot",
+    "Foodtown: Shop Online",
+    "Rallye Motor Company Brand Video",
+    "Porsche of Englewood: Restoration Challenge",
+    "Foodtown: Quality Meals",
+    "Foodtown: 3 Ingredients Challenge",
+    "F.I.R.M.",
+    "Riverbank Taphouse",
+    "Susan Ciminelli",
+    "STAX",
 ]
 
 const useStyles = makeStyles((theme) => 
