@@ -262,7 +262,6 @@ const NavBar = (props) => {
                         mr: 2,
                         display: { xs: 'flex', md: '1' },
                         flexGrow: 1,
-                        fontFamily: 'monospace',
                         fontWeight: 700,
                         letterSpacing: '.3rem',
                         color: 'inherit',

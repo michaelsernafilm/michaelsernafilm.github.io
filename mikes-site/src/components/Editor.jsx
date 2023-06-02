@@ -105,7 +105,7 @@ const Editor = () => {
                                     setEditOpen(true);
                                 }}
                                 component="img"
-                                height="300"
+                                height="280"
                                 width="300"
                                 image={require(`../resources/edi_img_${index}.jpg`)}
                                 alt="n/a"
@@ -146,7 +146,7 @@ const Editor = () => {
                                     setOpen(true);
                                 }}
                                 component="img"
-                                height="300"
+                                height="280"
                                 width="300"
                                 image={require(`../resources/mot_img_${index}.jpg`)}
                                 alt="n/a"

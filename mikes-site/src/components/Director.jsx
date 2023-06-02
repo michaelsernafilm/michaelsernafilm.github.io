@@ -5,6 +5,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 import "../css/video-react.css";
+import "../fonts/Analogue/Other Font Files/stylesheet.css";
 import '../../node_modules/react-modal-video/scss/modal-video.scss';
 import ModalVideo from 'react-modal-video';
 
@@ -96,7 +97,7 @@ const Director = () => {
                                     setOpen(true);
                                 }}
                                 component="img"
-                                height="300"
+                                height="280"
                                 width="300"
                                 image={require(`../resources/dir_img_${index}.jpg`)}
                                 alt="n/a"

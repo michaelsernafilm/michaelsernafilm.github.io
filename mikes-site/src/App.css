@@ -37,11 +37,3 @@
     transform: rotate(360deg);
   }
 }
-
-@font-face {
-  font-family: Futura;
-  src: local('Futura Std');
-}
-span {
-  font-family: Futura;
-}

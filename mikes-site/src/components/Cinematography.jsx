@@ -89,7 +89,7 @@ const Cinematography = () => {
                                     setOpen(true);
                                 }}
                                 component="img"
-                                height="300"
+                                height="280"
                                 width="300"
                                 image={require(`../resources/cine_img_${index}.jpg`)}
                                 alt="n/a"
