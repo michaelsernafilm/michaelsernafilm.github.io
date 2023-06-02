@@ -29,10 +29,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "pre-deploy": "cp src/css/* build/static/css/",
+    "deploy": "npm run pre-deploy && gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "files": [
+    "src/css"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
