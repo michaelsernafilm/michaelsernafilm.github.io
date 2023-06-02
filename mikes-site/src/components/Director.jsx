@@ -4,7 +4,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
-import "./../css/modal-video.scss"
+import "react-modal-video/css/modal-video.min.css";
 import ModalVideo from 'react-modal-video';
 
 import Card from '@mui/material/Card';
