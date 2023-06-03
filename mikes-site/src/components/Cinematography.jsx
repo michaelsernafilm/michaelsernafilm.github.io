@@ -3,17 +3,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import CloseIcon from '@mui/icons-material/Close';
 
-import "react-modal-video/css/modal-video.min.css";
-import ModalVideo from 'react-modal-video'
-
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import { CardActionArea, CardActions } from '@mui/material';
 
-const nDirTiles = 11;
+import 'vidstack/styles/defaults.css';
+import { MediaOutlet, MediaCaptions, MediaPoster, MediaPlayer } from '@vidstack/react';
+
+const nNumCineTiles = 11;
 const cineTiles = [
     "Ford Puente Hills Brand Video",
     "Bearaby Studio Shoot",
@@ -44,49 +47,80 @@ const useStyles = makeStyles((theme) =>
     },
 }));
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    maxWidth: 600,
+    transform: 'translate(-50%, -50%)',
+    boxShadow: 24,
+    p: 4,
+};
+
 const Cinematography = () => {
     const classes = useStyles();
     const [isOpen, setOpen] = useState(false);
     const [index, setIndex] = useState(1);
-    const directorTiles = [];
+    const tiles = [];
+
+    const handleOpen = (index) => 
+    {
+        setIndex(index);
+        setOpen(true);
+    };
+
+    const handleClose = () => setOpen(false);
     
-    for(let i = 1; i <= nDirTiles; ++i) {
+    for(let i = 1; i <= nNumCineTiles; ++i) {
         var tile = {
             img: require(`../resources/cine_img_${i}.jpg`),
             title: cineTiles[i-1],
             author: 'Mike Serna'
         };
 
-        directorTiles[i] = tile;
+        tiles[i] = tile;
     }
 
     return (
     <div className='container'>
-        <ModalVideo autoplay={1} animationSpeed={1} channel='custom' isOpen={isOpen} url={require(`../videos/cine_vid_${index}.mp4`)} onClose={() => setOpen(false)} />
-
+        <Modal
+            open={isOpen}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box sx={style}>
+                <CloseIcon sx={{color: "black", backgroundColor: "white", position: "relative"}} onClick={handleClose}/>
+            
+                <MediaPlayer
+                    autoplay
+                    title={tile.title}
+                    src={require(`../videos/cine_vid_${index}.mp4`)}
+                    poster={require(`../resources/cine_img_${index}.jpg`)}
+                    controls
+                >
+                    <MediaOutlet>
+                        <MediaPoster />
+                        <MediaCaptions />
+                    </MediaOutlet>
+                </MediaPlayer>
+            </Box>
+        </Modal>
         <GridList cols={3} cellHeight={'auto'} className={classes.gridList} spacing={12}>
             <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-            <div class="site-section">
-            </div>
+            <div class="site-section" />
             </GridListTile >
-                {directorTiles.map((tile, index) => (
+                {tiles.map((tile, index) => (
                     <GridListTile >
                         <Card sx={{ maxWidth: 400, maxHeight: 400 }} style={{ backgroundColor: "black", color: "white", fontFamily: "initial" }}>
                             <CardActionArea>
                                 <PlayCircleIcon 
                                     className="icon-wrap"
                                     style={{fontSize: '300%'}}
-                                    
-                                    onClick={() => {
-                                        setIndex(index);
-                                        setOpen(true);
-                                    }}
+                                    onClick={() => handleOpen(index)}
                                 />
                                 <CardMedia
-                                onClick={() => {
-                                    setIndex(index);
-                                    setOpen(true);
-                                }}
+                                onClick={() => handleOpen(index)}
                                 component="img"
                                 height="280"
                                 width="300"
