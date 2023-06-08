@@ -52,14 +52,19 @@ const useStyles = makeStyles((theme) =>
 }));
 
 const style = {
-    position: 'absolute',
-    top: '50%',
+    border: '0',
+    borderRadius: '4px',
+    bottom: 'auto',
+    minHeight: '10rem',
     left: '50%',
-    width: 600,
-    maxWidth: 600,
-    transform: 'translate(-50%, -50%)',
-    boxShadow: 24,
-    p: 4,
+    padding: '2rem',
+    position: 'fixed',
+    right: 'auto',
+    top: '50%',
+    transform: 'translate(-50%,-50%)',
+    minWidth: '20rem',
+    width: '80%',
+    maxWidth: '60rem'
 };
 
 const Editor = () => {

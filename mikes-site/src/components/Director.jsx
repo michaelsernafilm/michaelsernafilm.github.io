@@ -14,7 +14,8 @@ import Modal from '@mui/material/Modal';
 import { CardActionArea, CardActions } from '@mui/material';
 
 import 'vidstack/styles/defaults.css';
-import { MediaOutlet, MediaCaptions, MediaPoster, MediaPlayer } from '@vidstack/react';
+import { MediaOutlet, MediaCaptions, MediaPoster, MediaPlayer, useMediaStore } from '@vidstack/react';
+
 
 const nDirTiles = 9;
 const directorTitles = [
@@ -51,35 +52,22 @@ const Director = () => {
     const [isOpen, setOpen] = useState(false);
     const [index, setIndex] = useState(1);
     const directorTiles = [];
-    const [width, setWidth] = useState(window.innerWidth);
-    var w = 600;
 
     const style = {
-        position: 'absolute',
-        top: '50%',
+        border: '0',
+        borderRadius: '4px',
+        bottom: 'auto',
+        minHeight: '10rem',
         left: '50%',
-        maxWidth: w,
-        transform: 'translate(-50%, -50%)',
-        boxShadow: 24,
-        p: 4,
+        padding: '2rem',
+        position: 'fixed',
+        right: 'auto',
+        top: '50%',
+        transform: 'translate(-50%,-50%)',
+        minWidth: '20rem',
+        width: '80%',
+        maxWidth: '60rem'
     };
-    
-    const handleWindowSizeChange = () => {
-        setWidth(window.innerWidth);
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
-    }, []);
-
-    const isMobile = width <= 380;
-
-    useEffect(()=> {
-        w = 400;
-        console.log("is mobile");
-    }, [isMobile]);
 
     const handleOpen = (index) => 
     {
@@ -101,7 +89,6 @@ const Director = () => {
 
     return (
     <div className='container'>
-        
         <Modal
             open={isOpen}
             onClose={handleClose}
