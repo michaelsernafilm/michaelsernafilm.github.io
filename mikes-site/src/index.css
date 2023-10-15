@@ -97,3 +97,8 @@ body {
   color:#fff;
   opacity:1;
 }
+
+.CloseButton:hover {
+  background-color: inherit !important;
+  cursor:pointer;
+}

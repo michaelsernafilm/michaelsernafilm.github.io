@@ -96,7 +96,7 @@ const Director = () => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <CloseIcon sx={{color: "black", backgroundColor: "white", position: "relative"}} onClick={handleClose}/>
+                <CloseIcon className={"CloseButton"} sx={{color: "black", backgroundColor: "white", position: "relative"}} onClick={handleClose}/>
                 <MediaPlayer
                     autoplay
                     title={tile.title}
