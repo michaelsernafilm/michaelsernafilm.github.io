@@ -12,6 +12,7 @@ import { Director } from "./components/Director";
 import { Cinematography } from "./components/Cinematography";
 import { Editor } from "./components/Editor";
 import { About } from './components/About';
+import { CarouselTestPage } from './components/CarouselTestPage';
 
 function App() {
   const theme = createTheme({
@@ -37,6 +38,7 @@ function App() {
           <NavBar></NavBar>
           <Routes>
             <Route path="/" element={<Director />} />
+            <Route path="carousel" element={<CarouselTestPage />}></Route>
             <Route path="/director" element={<Director />} />
             <Route path="/cinematography" element={<Cinematography />} />
             <Route path="/editor" element={<Editor />} />

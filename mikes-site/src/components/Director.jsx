@@ -1,7 +1,6 @@
 import {React, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import ImageListItem from '@material-ui/core/ImageListItem';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -12,24 +11,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { CardActionArea, CardActions } from '@mui/material';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 import 'vidstack/styles/defaults.css';
 import { MediaOutlet, MediaCaptions, MediaPoster, MediaPlayer, useMediaStore } from '@vidstack/react';
-
-
-const nDirTiles = 9;
-const directorTitles = [
-    "DisplayIt - Make It Pop",
-    "High Impact - The Artisan",
-    "Rallye Mercedes EV Lineup",
-    "Rallye Lexus Multicultural",
-    "Bearaby x Celsious",
-    "Fortify",
-    "Central Park",
-    "Kalispel Casino",
-    "GUS Short Film",
-    "Henry Rose",
-]
+import Carousel from 'react-material-ui-carousel';
 
 const useStyles = makeStyles((theme) => 
 ({
@@ -43,15 +31,38 @@ const useStyles = makeStyles((theme) =>
     {
       padding: theme.spacing(2),
       textAlign: 'center',
+      fontSize: '1000%',
       color: theme.palette.text.secondary,
     },
 }));
 
-const Director = () => {
+const Director = () => 
+{
     const classes = useStyles();
     const [isOpen, setOpen] = useState(false);
     const [index, setIndex] = useState(1);
-    const directorTiles = [];
+    const [displayMode, setDisplayMode] = useState(false);
+    const nDirTiles = 9;
+    const directorTitles = [
+        "DisplayIt - Make It Pop",
+        "High Impact - The Artisan",
+        "Rallye Mercedes EV Lineup",
+        "Rallye Lexus Multicultural",
+        "Bearaby x Celsious",
+        "Fortify",
+        "Central Park",
+        "Kalispel Casino",
+        "GUS Short Film",
+        "Henry Rose",
+    ];
+
+    const handleChange = () => {
+        setDisplayMode(displayMode ? false : true);
+    };
+
+    useEffect(() => console.log(displayMode), [displayMode]);
+
+    var tiles = [];
 
     const style = {
         border: '0',
@@ -77,18 +88,18 @@ const Director = () => {
 
     const handleClose = () => setOpen(false);
     
-    for(let i = 1; i <= nDirTiles; ++i) {
+    for(let i = 0; i < nDirTiles; ++i) {
         var tile = {
             img: require(`../resources/dir_img_${i}.jpg`),
-            title: directorTitles[i-1],
+            title: directorTitles[i],
             author: 'Mike Serna'
         };
 
-        directorTiles[i] = tile;
+        tiles[i] = tile;
     }
 
     return (
-    <div className='container'>
+    <div>
         <Modal
             open={isOpen}
             onClose={handleClose}
@@ -111,48 +122,102 @@ const Director = () => {
                 </MediaPlayer>
             </Box>
         </Modal>
-        <GridList cols={3} cellHeight={'auto'} className={classes.gridList} spacing={12}>
-            <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-            <div class="site-section" />
-            </GridListTile >
-                {directorTiles.map((tile, index) => (
-                    <GridListTile >
-                        <Card sx={{ maxWidth: 400, maxHeight: 400 }} style={{ backgroundColor: "black", color: "white", fontFamily: "initial" }} >
-                            <CardActionArea>
-                                <PlayCircleIcon 
-                                    className="icon-wrap"
-                                    style={{fontSize: '300%'}}
-                                    onClick={() => handleOpen(index)}
-                                />
-                                <CardMedia
-                                onClick={() => handleOpen(index)}
-                                component="img"
-                                height="280"
-                                width="300"
-                                image={require(`../resources/dir_img_${index}.jpg`)}
-                                alt="n/a"
-                                />
-                                <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {tile.title}
-                                </Typography>
-                                <Typography gutterBottom variant="h7" component="div">
-                                    Directed by: {tile.author}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                {/* You can add Share or other buttons here */}
-                            </CardActions>
-                        </Card>
-                    </GridListTile>
-                ))}
-        </GridList>
-
+        <ImageListItem key="Subheader" cols={3} style={{ height: 'auto' }}>
+            <FormGroup >
+                <FormControlLabel style={{color: 'white'}} value="start" control={<Switch  />} onChange={handleChange} label="Show All Tiles" />
+            </FormGroup>
+        </ImageListItem >
+        <div>
+            {displayMode ?
+                tiles.map((tile, index) => (
+                    <VideoTile
+                    tile={tile}
+                    index={index}
+                    handleOpen={handleOpen}
+                    handleClose={handleClose}
+                    style={style}
+                ></VideoTile>
+                ))
+            :
+                <Carousel
+                    navButtonsAlwaysVisible={true}
+                    autoPlay={false}
+                >
+                    {
+                        tiles.map((tile, index) => (
+                        <VideoTile
+                            tile={tile}
+                            index={index}
+                            handleOpen={handleOpen}
+                            handleClose={handleClose}
+                            style={style}
+                        ></VideoTile>
+                        ))
+                    }
+                </Carousel>
+            }
+        </div>
     </div>
     );
 };
+
+const VideoTile = (props) =>
+{
+    return (
+    <div className="container">
+        <ImageListItem >
+            <Card style={{ backgroundColor: "black", color: "white", fontFamily: "initial" }} >
+                <CardContent>
+                    <CardActionArea>
+                        <PlayCircleIcon 
+                            className="icon-wrap"
+                            style={{fontSize: "1000%"}}
+                            onClick={() => props.handleOpen(props.index)}
+                        />
+                        <CardMedia
+                        onClick={() => props.handleOpen(props.index)}
+                        component="img"
+                        height="600"
+                        width="600"
+                        image={require(`../resources/dir_img_${props.index}.jpg`)}
+                        alt="n/a"
+                        />
+                        <VideoDescription tile={props.tile}></VideoDescription>
+                    </CardActionArea>
+                </CardContent>
+                <CardActions>
+                    {/* <Accolades></Accolades> */}
+                </CardActions>
+            </Card>
+            
+        </ImageListItem>
+    </div>
+    );
+}
+
+const VideoDescription = (props) =>
+{
+    return(
+        <div>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {props.tile.title}
+                </Typography>
+                <Typography gutterBottom variant="h7" component="div">
+                    Directed by: {props.tile.author}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                </Typography>
+            </CardContent>
+        </div>
+    );
+}
+
+const Accolades = () =>
+{
+    return(
+        <img src={require('../resources/gus_laurels_1.png')}></img>
+    );
+}
 
 export { Director };
